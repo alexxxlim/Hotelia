@@ -14,6 +14,11 @@ public class Reseña {
         this.autor = autor;
     }
 
+    //getters y setters
+    public int getRating(){
+        return rating;
+    }
+
     boolean esValida(){
 
     }

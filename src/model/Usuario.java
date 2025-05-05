@@ -19,26 +19,40 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 }
-
+//TODO: @alexlim: falta funciones
 
 
 
 
     /*
+    //Funciones principales:
     void login() {
-
+    //TODO:
     }
 
     void logout() {
-
+    //TODO:
     }
 
     void actualizarPerfil(String contraseñaActual, String correoActual, String nuevaContraseña, String nuevoCorreo) {
-
+    //TODO:
     }
 
     boolean verificarCredenciales(String contraseña, String correo) {
+    //TODO:
+    }
 
+    //Funciones adicionales:
+    String getRol() {
+    }
+
+    boolean esAdministrador() {
+    }
+
+    void cambiarContrasenia(String nuevaContrasenia) {
+    }
+
+    void desactivarCuenta() {
     }
      */
 

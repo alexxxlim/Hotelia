@@ -24,37 +24,39 @@ public class Usuario {
 
 
 
-    /*
-    //Funciones principales:
+
+/*
+//Funciones principales:
     void login() {
-    //TODO:
+//TODO:
+}
+
+void logout() {
+//TODO:
     }
 
-    void logout() {
-    //TODO:
+void actualizarPerfil(String contraseniaActual, String correoActual, String nuevaContrasenia, String nuevoCorreo) {
+//TODO:
     }
 
-    void actualizarPerfil(String contraseñaActual, String correoActual, String nuevaContraseña, String nuevoCorreo) {
-    //TODO:
+boolean verificarCredenciales(String contraseña, String correo) {
+//TODO:
     }
 
-    boolean verificarCredenciales(String contraseña, String correo) {
-    //TODO:
+//Funciones adicionales:
+String getRol() {
     }
 
-    //Funciones adicionales:
-    String getRol() {
+boolean esAdministrador() {
     }
 
-    boolean esAdministrador() {
+void cambiarContrasenia(String nuevaContrasenia) {
     }
 
-    void cambiarContrasenia(String nuevaContrasenia) {
+void desactivarCuenta() {
     }
 
-    void desactivarCuenta() {
-    }
-     */
+ */
 
 
 

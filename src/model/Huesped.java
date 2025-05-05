@@ -16,3 +16,48 @@ public class Huesped extends Usuario {
         this.esSocioVIP = esSocioVIP;
     }
 }
+//TODO: @alexlim: falta funciones
+
+
+
+/*
+//Funciones principales:
+
+    Reserva hacerReserva(Habitacion h, String inicio, String fin) {
+//TODO:
+}
+
+    void cancelarReserva(Reserva r) {
+//TODO:
+}
+
+    void dejarResenia(Habitacion h, String comentario, int rating) {
+//TODO:
+}
+
+    void pagarMembresiaVIP() {
+//TODO:
+}
+
+    List<Habitacion> verHistorialReservas() {
+//TODO:
+}
+
+//Funciones adicionales:
+
+    boolean tieneReservaActiva() {
+}
+
+    Reserva obtenerReservaPorFecha(String fecha) {
+}
+
+    double calcularTotalGastado() {
+}
+
+    boolean esClienteFrecuente() {
+}
+
+    void solicitarAsistencia(String mensaje) {
+}
+
+ */

@@ -1,17 +1,18 @@
 package model;
 //
 
-import control.*;
-
 import java.util.ArrayList;
 //import java.util.List;
 
 public class Huesped extends Usuario {
-    public boolean socioVIP;
+    public int idVIP;
+    public boolean esSocioVIP;
+
     public ArrayList<Reserva> reservas = new ArrayList<>();
 
-    public Huesped(int id, String nombre, String correo, String contrasenia, boolean socioVIP) {
+    public Huesped(int id, int idVIP, String nombre, String correo, String contrasenia, boolean esSocioVIP) {
         super(id, nombre, correo, contrasenia);
-        this.socioVIP = socioVIP;
+        this.idVIP = idVIP;
+        this.esSocioVIP = esSocioVIP;
     }
 }

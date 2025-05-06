@@ -14,6 +14,8 @@ public class Huesped extends Usuario {
         super(id, nombre, correo, contrasenia);
         this.idVIP = idVIP;
         this.esSocioVIP = esSocioVIP;
+
+        this.reservas = new ArrayList<>();
     }
 }
 //TODO: @alexlim: falta funciones
@@ -44,6 +46,7 @@ public class Huesped extends Usuario {
 }
 
 //Funciones adicionales:
+//TODO:
 
     boolean tieneReservaActiva() {
 }

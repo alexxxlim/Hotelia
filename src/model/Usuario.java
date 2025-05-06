@@ -44,6 +44,8 @@ boolean verificarCredenciales(String contraseña, String correo) {
     }
 
 //Funciones adicionales:
+//TODO:
+
 String getRol() {
     }
 

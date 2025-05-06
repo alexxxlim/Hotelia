@@ -1,47 +1,40 @@
 package model;
 
-import control.*;
-
-//En este momento hacemos todas la clases sin getters ni setters (sin incapsulación) para facilitar nuestro trabajo con MVP
 public class Usuario {
 
     public int id;
     public String nombre;
     public String correo;
     public String contrasenia;
+    public boolean activo = true;
 
     public Usuario(int id, String nombre, String correo, String contrasenia) {
-        super();
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.contrasenia = contrasenia;
     }
+
+    // Funciones adicionales:
+
+    public String getRol() {
+        return this.getClass().getSimpleName();
+    }
+
+    public boolean esAdministrador() {
+        return this instanceof Gerente;
+    }
+
+    public void cambiarContrasenia(String nuevaContrasenia) {
+        this.contrasenia = nuevaContrasenia;
+    }
+
+    public void desactivarCuenta() {
+        this.activo = false;
+    }
 }
-//TODO: @alexlim: falta funciones
-
-
-
-
 
 /*
-//Funciones principales:
-    void login() {
-//TODO:
-}
-
-void logout() {
-//TODO:
-    }
-
-void actualizarPerfil(String contraseniaActual, String correoActual, String nuevaContrasenia, String nuevoCorreo) {
-//TODO:
-    }
-
-boolean verificarCredenciales(String contraseña, String correo) {
-//TODO:
-    }
-
 //Funciones adicionales:
 //TODO:
 
@@ -58,6 +51,3 @@ void desactivarCuenta() {
     }
 
  */
-
-
-

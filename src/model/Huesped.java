@@ -1,7 +1,8 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-//import java.util.List;
+import java.util.List;
 
 public class Huesped extends Usuario {
     public int idVIP;
@@ -14,8 +15,6 @@ public class Huesped extends Usuario {
         super(id, nombre, correo, contrasenia);
         this.idVIP = idVIP;
         this.esSocioVIP = esSocioVIP;
-
-        this.reservas = new ArrayList<>();
     }
 
     public Huesped(int id, String nombre, String correo, String contrasenia, int idVIP, boolean esSocioVIP, Habitacion habitacion, ArrayList<Reserva> reservas) {
@@ -23,53 +22,62 @@ public class Huesped extends Usuario {
         this.idVIP = idVIP;
         this.esSocioVIP = esSocioVIP;
         this.habitacion = habitacion;
-
-        this.reservas = new ArrayList<>();
+        this.reservas = reservas != null ? reservas : new ArrayList<>();
     }
+
+    // Funciones principales:
+
+    public Reserva hacerReserva(Habitacion h, LocalDate inicio, LocalDate fin) {
+        if (!h.estaDisponible(inicio, fin)) {
+            throw new IllegalStateException("La habitación no está disponible para las fechas indicadas.");
+        }
+        int dias = (int) (fin.toEpochDay() - inicio.toEpochDay());
+        Reserva r = new Reserva(-1, inicio, fin, dias, false, this, h); // ID asignado después
+        r.confirmarReserva();
+        return r;
+    }
+
+    public void cancelarReserva(Reserva r) {
+        r.cancelarReserva();
+    }
+
+    public void dejarResenia(Habitacion h, String comentario, int rating) {
+        Resenia nueva = new Resenia(comentario, rating, this);
+        h.agregarResenia(nueva);
+    }
+
+    public void pagarMembresiaVIP() {
+        this.esSocioVIP = true;
+        System.out.println("¡Felicidades! Ahora eres socio VIP.");
+    }
+
+    public List<Habitacion> verHistorialReservas() {
+        List<Habitacion> historial = new ArrayList<>();
+        for (Reserva r : reservas) {
+            historial.add(r.habitacion);
+        }
+        return historial;
+    }
+
+
 }
-//TODO: @alexlim: falta funciones
-
-
 
 /*
-//Funciones principales:
-
-    Reserva hacerReserva(Habitacion h, String inicio, String fin) {
-//TODO:
-}
-
-    void cancelarReserva(Reserva r) {
-//TODO:
-}
-
-    void dejarResenia(Habitacion h, String comentario, int rating) {
-//TODO:
-}
-
-    void pagarMembresiaVIP() {
-//TODO:
-}
-
-    List<Habitacion> verHistorialReservas() {
-//TODO:
-}
-
 //Funciones adicionales:
 //TODO:
 
-    boolean tieneReservaActiva() {
+boolean tieneReservaActiva() {
 }
 
-    Reserva obtenerReservaPorFecha(String fecha) {
+Reserva obtenerReservaPorFecha(String fecha) {
 }
 
-    double calcularTotalGastado() {
+double calcularTotalGastado() {
 }
 
-    boolean esClienteFrecuente() {
+boolean esClienteFrecuente() {
 }
 
-    void solicitarAsistencia(String mensaje) {
+void solicitarAsistencia(String mensaje) {
 }
-
  */

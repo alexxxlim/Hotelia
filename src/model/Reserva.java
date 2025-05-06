@@ -12,7 +12,6 @@ public class Reserva {
     public Huesped huesped;
     public Habitacion habitacion;
 
-
     public Reserva(int id, LocalDate fechaInicio, LocalDate fechaFin, int dias, boolean esConfirmada, Huesped huesped, Habitacion habitacion) {
         this.id = id;
         this.fechaInicio = fechaInicio;
@@ -22,6 +21,8 @@ public class Reserva {
         this.huesped = huesped;
         this.habitacion = habitacion;
     }
+
+    // Funciones principales:
 
     public double calcularPrecioTotal() {
         long noches = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
@@ -50,4 +51,3 @@ public class Reserva {
         huesped.reservas.remove(this);
     }
 }
-//TODO: @alexlim: falta funciones

@@ -2,26 +2,25 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Habitacion {
     public int numero;
     public String tipo; // estándar, VIP, suite, etc.
     public double precio;
     public boolean esDisponible;
-    //public boolean mantenimiento;
 
     public ArrayList<Resenia> resenias = new ArrayList<>();
     public ArrayList<Reserva> reservas = new ArrayList<>();
 
-    public Habitacion(int numero, String tipo, double precio, boolean esDisponible/*, boolean mantenimiento*/,
+    public Habitacion(int numero, String tipo, double precio, boolean esDisponible,
                       ArrayList<Resenia> resenias, ArrayList<Reserva> reservas) {
         this.numero = numero;
         this.tipo = tipo;
         this.precio = precio;
         this.esDisponible = esDisponible;
-        //this.mantenimiento = mantenimiento;
-
-        this.resenias = new ArrayList<>();
+        this.resenias = resenias != null ? resenias : new ArrayList<>();
+        this.reservas = reservas != null ? reservas : new ArrayList<>();
     }
 
     public double calcularPrecioConDescuento(boolean esVip) {
@@ -48,33 +47,36 @@ public class Habitacion {
         }
         return true;
     }
-}
-//TODO: @alexlim: falta funciones
 
-
-
-
-
-/*
-//Funciones Principales:
+    // Funciones Principales:
 
     public void agregarResenia(Resenia r) {
-//TODO:
-}
+        resenias.add(r);
+    }
 
     public void agregarReserva(Reserva r) {
-//TODO:
-}
+        reservas.add(r);
+    }
 
     public void marcarMantenimiento(boolean estado) {
-//TODO:
-}
+        esDisponible = !estado;
+    }
 
-    public void limpiarReservasPasadas(String fechaActual) {
-//TODO:
-}
+    public void limpiarReservasPasadas(LocalDate fechaActual) {
+        Iterator<Reserva> iter = reservas.iterator();
+        while (iter.hasNext()) {
+            Reserva r = iter.next();
+            if (r.fechaFin.isBefore(fechaActual)) {
+                iter.remove();
+            }
+        }
+    }
 
     public int totalNochesReservadas() {
-//TODO:
+        int total = 0;
+        for (Reserva r : reservas) {
+            total += r.dias;
+        }
+        return total;
+    }
 }
-*/

@@ -1,29 +1,23 @@
 package model;
 
 public class Resenia {
-    String comentario;
-    int rating;
-    Huesped autor;
+    public String comentario;
+    public int rating;
+    public Huesped autor;
 
     public Resenia(String comment, int rating, Huesped autor) {
         this.comentario = comment;
         this.rating = rating;
         this.autor = autor;
     }
+
+    // Funciones Principales:
+
+    public boolean esValida() {
+        return rating >= 1 && rating <= 5 && comentario != null && !comentario.isBlank();
+    }
+
+    public String resumen() {
+        return "[" + rating + "/5] " + comentario + " - " + autor.nombre;
+    }
 }
-//TODO: @alexlim: falta funciones
-
-
-
-
-
-/*
-//Funciones Principales:
-    boolean esValida() {
-    //TODO:
-}
-
-    String resumen() {
-    //TODO:
-}
- */

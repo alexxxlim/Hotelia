@@ -1,47 +1,59 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recepcionista extends Usuario {
     public Huesped huesped;
     public Habitacion habitacion;
 
     public ArrayList<Reserva> reservas;
-    //public ArrayList<Permiso> permisos;
 
     public Recepcionista(int id, String nombre, String correo, String contrasenia) {
         super(id, nombre, correo, contrasenia);
-        this.huesped = huesped;
-
         this.reservas = new ArrayList<>();
-        //this.permisos = new ArrayList<>();
+    }
+
+    // Funciones Principales:
+
+    public List<Reserva> verReservasActivas() {
+        List<Reserva> activas = new ArrayList<>();
+        for (Reserva r : reservas) {
+            if (r.esConfirmada) {
+                activas.add(r);
+            }
+        }
+        return activas;
+    }
+
+    public void asistirCliente(Huesped h) {
+        System.out.println("Asistiendo al cliente: " + h.nombre);
+    }
+
+    public Habitacion buscarHabitacionDisponible(List<Habitacion> habitaciones, String tipo, LocalDate ini, LocalDate fin) {
+        for (Habitacion h : habitaciones) {
+            if (h.tipo.equalsIgnoreCase(tipo) && h.estaDisponible(ini, fin)) {
+                return h;
+            }
+        }
+        return null;
+    }
+
+    public void crearReservaParaCliente(Huesped h, Habitacion hab, LocalDate ini, LocalDate fin) {
+        if (!hab.estaDisponible(ini, fin)) {
+            System.out.println("La habitación no está disponible para las fechas indicadas.");
+            return;
+        }
+        int dias = (int) (fin.toEpochDay() - ini.toEpochDay());
+        Reserva r = new Reserva(-1, ini, fin, dias, false, h, hab);
+        r.confirmarReserva();
+        reservas.add(r);
+        System.out.println("Reserva creada y confirmada para: " + h.nombre);
     }
 }
-//TODO: @alexlim: falta funciones
-
-
-
-
 
 /*
-//Funciones Principales:
-
-    List<Reserva> verReservasActivas() {
-    //TODO:
-}
-
-    void asistirCliente(Huesped h) {
-    //TODO:
-}
-
-    Habitacion buscarHabitacionDisponible() {
-    //TODO:
-}
-
-    void crearReservaParaCliente(Huesped h, Habitacion hab, LocalDate ini, LocalDate fin) {
-    //TODO:
-}
-
 //Funciones adicionales:
 //TODO:
 

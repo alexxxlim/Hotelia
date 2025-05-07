@@ -14,6 +14,16 @@ public class Gerente extends Usuario {
         this.habitaciones = new ArrayList<>();
     }
 
+    //Getter
+    public ArrayList<Habitacion> getHabitaciones(){
+        return habitaciones;
+    }
+
+    //Setter
+    public void setHabitaciones(ArrayList<Habitacion> habitaciones){
+        this.habitaciones = habitaciones;
+    }
+
     // Funciones Principales:
 
     public List<Habitacion> verTodasLasHabitaciones() {

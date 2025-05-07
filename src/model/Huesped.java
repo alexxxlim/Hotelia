@@ -25,6 +25,40 @@ public class Huesped extends Usuario {
         this.reservas = reservas != null ? reservas : new ArrayList<>();
     }
 
+    //Getters
+    public int getIdVIP(){
+        return idVIP;
+    }
+
+    public boolean isEsSocioVIP(){
+        return esSocioVIP;
+    }
+
+    public Habitacion getHabitacion(){
+        return habitacion;
+    }
+
+    public ArrayList<Reserva> getReservas(){
+        return reservas;
+    }
+
+    //Setters
+    public void setIdVIP(int idVIP){
+        this.idVIP = idVIP;
+    }
+
+    public void setEsSocioVIP(boolean esSocioVIP){
+        this.esSocioVIP = esSocioVIP;
+    }
+
+    public void setHabitacion(Habitacion habitacion){
+        this.habitacion = habitacion;
+    }
+
+    public void setReservas(ArrayList<Reserva> reservas){
+        this.reservas = reservas;
+    }
+
     // Funciones principales:
 
     public Reserva hacerReserva(Habitacion h, LocalDate inicio, LocalDate fin) {

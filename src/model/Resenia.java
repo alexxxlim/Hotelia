@@ -11,6 +11,34 @@ public class Resenia {
         this.autor = autor;
     }
 
+    //Getters
+
+    public Huesped getAutor() {
+        return autor;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    //Setters
+
+    public void setAutor(Huesped autor) {
+        this.autor = autor;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     // Funciones Principales:
 
     public boolean esValida() {

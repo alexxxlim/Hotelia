@@ -24,6 +24,58 @@ public class Hotel {
         this.reservas = reservas != null ? reservas : new ArrayList<>();
     }
 
+    //Getters
+
+    public int getId(){
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public int getEstrellas() {
+        return estrellas;
+    }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public ArrayList<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+
+    //Setters
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
+    public void setEstrellas(int estrellas) {
+        this.estrellas = estrellas;
+    }
+
+    public void setReservas(ArrayList<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     // Funciones principales:
 
     public void agregarHabitacion(Habitacion h) {

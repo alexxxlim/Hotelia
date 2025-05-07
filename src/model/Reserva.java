@@ -22,6 +22,66 @@ public class Reserva {
         this.habitacion = habitacion;
     }
 
+    //Getters
+
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
+
+    public Huesped getHuesped() {
+        return huesped;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean isEsConfirmada() {
+        return esConfirmada;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    //Setters
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public void setHuesped(Huesped huesped) {
+        this.huesped = huesped;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDias(int dias) {
+        this.dias = dias;
+    }
+
+    public void setEsConfirmada(boolean esConfirmada) {
+        this.esConfirmada = esConfirmada;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
     // Funciones principales:
 
     public double calcularPrecioTotal() {

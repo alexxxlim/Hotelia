@@ -23,6 +23,59 @@ public class Habitacion {
         this.reservas = reservas != null ? reservas : new ArrayList<>();
     }
 
+    //Getters
+    public int getNumero(){
+        return numero;
+    }
+
+    public String getTipo(){
+        return tipo;
+    }
+
+    public double getPrecio(){
+        return precio;
+    }
+
+    public boolean isEsDisponible(){
+        return esDisponible;
+    }
+
+    public ArrayList<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    //Setters
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setEsDisponible(boolean esDisponible) {
+        this.esDisponible = esDisponible;
+    }
+
+    public void setResenias(ArrayList<Resenia> resenias) {
+        this.resenias = resenias;
+    }
+
+    public void setReservas(ArrayList<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    // Funciones Principales:
+
     public double calcularPrecioConDescuento(boolean esVip) {
         double descuento = 0.20;
         return esVip ? precio * (1 - descuento) : precio;
@@ -48,7 +101,6 @@ public class Habitacion {
         return true;
     }
 
-    // Funciones Principales:
 
     public void agregarResenia(Resenia r) {
         resenias.add(r);

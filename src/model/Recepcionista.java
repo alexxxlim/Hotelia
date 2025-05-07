@@ -15,6 +15,34 @@ public class Recepcionista extends Usuario {
         this.reservas = new ArrayList<>();
     }
 
+    //Getters
+
+    public Huesped getHuesped() {
+        return huesped;
+    }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
+
+    //Setters
+
+    public void setReservas(ArrayList<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public void setHuesped(Huesped huesped) {
+        this.huesped = huesped;
+    }
+
     // Funciones Principales:
 
     public List<Reserva> verReservasActivas() {

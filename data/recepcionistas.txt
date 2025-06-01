@@ -1,0 +1,2 @@
+20;Pedro;pedro@hotel.com;rec
+21;Julia;julia@hotel.com;1234

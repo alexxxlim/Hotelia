@@ -131,4 +131,9 @@ public class Habitacion {
         }
         return total;
     }
+
+    public boolean isDisponibleHoy() {
+        LocalDate hoy = LocalDate.now();
+        return estaDisponible(hoy, hoy.plusDays(1));
+    }
 }

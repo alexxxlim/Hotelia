@@ -1,0 +1,4 @@
+1;Estándar;50.0;true
+2;VIP;120.0;true
+3;Suite;200.0;true
+4;Mantenimiento;100.0;false

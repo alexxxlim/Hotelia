@@ -3,15 +3,39 @@ package model;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Clase que representa una reserva en el sistema Hotelia.
+ *
+ * Una reserva contiene información sobre las fechas de inicio y fin,
+ * el número de días, estado de confirmación, y las referencias al huésped
+ * y habitación asociadas.
+ *
+ * Esta clase también permite confirmar, cancelar y calcular el precio de la reserva.
+ *
+ * @author
+ * @version 1.0
+ */
 public class Reserva {
-    public int id;
-    public LocalDate fechaInicio;
-    public LocalDate fechaFin;
-    public int dias;
-    public boolean esConfirmada;
-    public Huesped huesped;
-    public Habitacion habitacion;
 
+    private int id;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
+    private int dias;
+    private boolean esConfirmada;
+    private Huesped huesped;
+    private Habitacion habitacion;
+
+    /**
+     * Constructor de reserva.
+     *
+     * @param id Identificador único.
+     * @param fechaInicio Fecha de entrada.
+     * @param fechaFin Fecha de salida.
+     * @param dias Número total de noches.
+     * @param esConfirmada Estado de confirmación.
+     * @param huesped Objeto {@link Huesped} que realiza la reserva.
+     * @param habitacion Objeto {@link Habitacion} reservada.
+     */
     public Reserva(int id, LocalDate fechaInicio, LocalDate fechaFin, int dias, boolean esConfirmada, Huesped huesped, Habitacion habitacion) {
         this.id = id;
         this.fechaInicio = fechaInicio;
@@ -22,48 +46,52 @@ public class Reserva {
         this.habitacion = habitacion;
     }
 
-    //Getters
-
-    public Habitacion getHabitacion() {
-        return habitacion;
-    }
-
-    public Huesped getHuesped() {
-        return huesped;
-    }
-
-    public int getDias() {
-        return dias;
-    }
+    // ========================
+    // Getters
+    // ========================
 
     public int getId() {
         return id;
-    }
-
-    public boolean isEsConfirmada() {
-        return esConfirmada;
-    }
-
-    public LocalDate getFechaFin() {
-        return fechaFin;
     }
 
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    //Setters
-
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
+    public LocalDate getFechaFin() {
+        return fechaFin;
     }
 
-    public void setHuesped(Huesped huesped) {
-        this.huesped = huesped;
+    public int getDias() {
+        return dias;
     }
+
+    public boolean isEsConfirmada() {
+        return esConfirmada;
+    }
+
+    public Huesped getHuesped() {
+        return huesped;
+    }
+
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
+
+    // ========================
+    // Setters
+    // ========================
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public void setDias(int dias) {
@@ -74,22 +102,36 @@ public class Reserva {
         this.esConfirmada = esConfirmada;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setHuesped(Huesped huesped) {
+        this.huesped = huesped;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
-    // Funciones principales:
+    // ========================
+    // Funcionalidad
+    // ========================
 
+    /**
+     * Calcula el precio total de la reserva en base a las noches
+     * y si el huésped es socio VIP (se aplica descuento).
+     *
+     * @return Precio total en euros.
+     */
     public double calcularPrecioTotal() {
         long noches = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
-        double precioPorNoche = habitacion.calcularPrecioConDescuento(huesped.esSocioVIP);
+        double precioPorNoche = habitacion.calcularPrecioConDescuento(huesped.isEsSocioVIP());
         return noches * precioPorNoche;
     }
 
+    /**
+     * Confirma la reserva, añadiéndola tanto a la habitación como al huésped.
+     *
+     * @throws IllegalStateException si la reserva ya está confirmada o
+     *         si la habitación no está disponible en las fechas indicadas.
+     */
     public void confirmarReserva() {
         if (esConfirmada) {
             throw new IllegalStateException("La reserva ya está confirmada.");
@@ -98,16 +140,21 @@ public class Reserva {
             throw new IllegalStateException("La habitación no está disponible entre las fechas indicadas.");
         }
         esConfirmada = true;
-        habitacion.reservas.add(this);
-        huesped.reservas.add(this);
+        habitacion.getReservas().add(this);
+        huesped.getReservas().add(this);
     }
 
+    /**
+     * Cancela la reserva confirmada, eliminándola de las listas de huésped y habitación.
+     *
+     * @throws IllegalStateException si la reserva aún no ha sido confirmada.
+     */
     public void cancelarReserva() {
         if (!esConfirmada) {
             throw new IllegalStateException("La reserva no está confirmada.");
         }
         esConfirmada = false;
-        habitacion.reservas.remove(this);
-        huesped.reservas.remove(this);
+        habitacion.getReservas().remove(this);
+        huesped.getReservas().remove(this);
     }
 }

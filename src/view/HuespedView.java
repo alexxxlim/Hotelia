@@ -1,4 +1,3 @@
-// ===== HuespedView.java (обновлённый с кнопкой обновления) =====
 package view;
 
 import javax.swing.*;
@@ -6,14 +5,55 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Ventana principal de interfaz gráfica para el rol de {@link model.Huesped}.
+ * <p>
+ * Proporciona botones de acción para ver habitaciones, hacer reservas,
+ * consultar historial, actualizar datos y salir del sistema.
+ * También incluye un reloj en tiempo real y recursos gráficos como logotipo y fondo.
+ * <p>
+ * Esta vista se comunica con {@code HuespedController} para ejecutar las funcionalidades.
+ *
+ * @author
+ * @version 1.0
+ */
 public class HuespedView extends JFrame {
+
+    /**
+     * Botón para actualizar los datos del sistema (reservas, habitaciones).
+     */
     public final JButton actualizarBtn = new JButton("🔄 Actualizar");
+
+    /**
+     * Botón para ver habitaciones disponibles.
+     */
     public final JButton verHabitacionesBtn = new JButton("🛏 Ver habitaciones");
+
+    /**
+     * Botón para hacer una nueva reserva.
+     */
     public final JButton hacerReservaBtn = new JButton("📅 Hacer reserva");
+
+    /**
+     * Botón para ver historial de reservas.
+     */
     public final JButton historialBtn = new JButton("📜 Ver historial");
+
+    /**
+     * Botón para salir de la sesión.
+     */
     public final JButton salirBtn = new JButton("🚪 Salir");
+
+    /**
+     * Etiqueta que muestra la fecha y hora actual.
+     */
     private final JLabel relojLabel = new JLabel();
 
+    /**
+     * Constructor de la ventana del huésped. Inicializa todos los elementos gráficos.
+     *
+     * @param nombreUsuario Nombre del huésped autenticado (para saludo personalizado).
+     */
     public HuespedView(String nombreUsuario) {
         setTitle("Hotelia - Huesped");
         setSize(800, 600);
@@ -22,6 +62,7 @@ public class HuespedView extends JFrame {
 
         JLabel fondo = new JLabel();
         fondo.setLayout(new BorderLayout());
+
         try {
             ImageIcon fondoImg = new ImageIcon("data/fondo.png");
             Image fondoEscalado = fondoImg.getImage().getScaledInstance(800, 600, Image.SCALE_SMOOTH);
@@ -43,6 +84,7 @@ public class HuespedView extends JFrame {
 
         JLabel saludo = new JLabel("👤 Bienvenido, " + nombreUsuario);
         saludo.setFont(new Font("Arial", Font.PLAIN, 16));
+
         relojLabel.setFont(new Font("Courier New", Font.BOLD, 16));
         relojLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -81,6 +123,9 @@ public class HuespedView extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Inicia un temporizador que actualiza continuamente la etiqueta del reloj con la hora y fecha actual.
+     */
     private void iniciarReloj() {
         Timer timer = new Timer(1000, e -> {
             String fecha = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date());

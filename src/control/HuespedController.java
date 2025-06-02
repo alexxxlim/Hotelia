@@ -149,16 +149,60 @@ public class HuespedController {
     }
 
     private void verHistorial() {
-        StringBuilder sb = new StringBuilder("Historial de reservas:\n");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        List<Reserva> reservas = modelo.getReservas();
+        if (reservas.isEmpty()) {
+            JOptionPane.showMessageDialog(vista, "📭 No hay reservas registradas.");
+            return;
+        }
 
-        modelo.getReservas().forEach(r ->
-                sb.append("Reserva: ").append(r.id)
-                        .append(", Hab: ").append(r.habitacion.numero)
-                        .append(", del ").append(r.fechaInicio.format(formatter))
-                        .append(" al ").append(r.fechaFin.format(formatter))
-                        .append("\n"));
+        String[] opciones = reservas.stream().map(r -> {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            return "Reserva #" + r.id + " | Hab " + r.habitacion.numero +
+                    " | " + r.fechaInicio.format(fmt) + " - " + r.fechaFin.format(fmt);
+        }).toArray(String[]::new);
 
-        JOptionPane.showMessageDialog(vista, sb.toString());
+        JComboBox<String> lista = new JComboBox<>(opciones);
+        int sel = JOptionPane.showConfirmDialog(vista, lista, "🕓 Tus reservas", JOptionPane.OK_CANCEL_OPTION);
+        if (sel != JOptionPane.OK_OPTION) return;
+
+        Reserva seleccionada = reservas.get(lista.getSelectedIndex());
+
+        String[] criterios = {
+                "🖥 Uso de la App",
+                "🧼 Limpieza",
+                "🛏 Comodidad",
+                "🙋 Atención",
+                "💰 Calidad-precio",
+                "🌟 Experiencia general"
+        };
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JComboBox<String>[] combos = new JComboBox[criterios.length];
+        for (int i = 0; i < criterios.length; i++) {
+            JPanel fila = new JPanel();
+            fila.setLayout(new BoxLayout(fila, BoxLayout.X_AXIS));
+            fila.add(new JLabel(criterios[i] + ": "));
+
+            combos[i] = new JComboBox<>(new String[]{
+                    "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"
+            });
+            fila.add(Box.createHorizontalStrut(10));
+            fila.add(combos[i]);
+            panel.add(fila);
+            panel.add(Box.createVerticalStrut(5));
+        }
+
+        int res = JOptionPane.showConfirmDialog(vista, panel, "📝 Evalúa tu reserva", JOptionPane.OK_CANCEL_OPTION);
+        if (res != JOptionPane.OK_OPTION) return;
+
+        StringBuilder resultado = new StringBuilder("Gracias por tu evaluación:\n\n");
+        for (int i = 0; i < criterios.length; i++) {
+            resultado.append(criterios[i]).append(": ")
+                    .append(combos[i].getSelectedItem()).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(vista, resultado.toString(), "✅ ¡Hecho!", JOptionPane.INFORMATION_MESSAGE);
     }
 }

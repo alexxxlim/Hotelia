@@ -140,11 +140,17 @@ public class Habitacion {
      * @return {@code true} si no hay reservas que se solapen y la habitación está disponible.
      */
     public boolean estaDisponible(LocalDate inicio, LocalDate fin) {
-        if (!esDisponible) return false;
+        if (!esDisponible) {
+            return false;
+        }
 
         for (Reserva r : reservas) {
-            boolean solapa = !(r.getFechaFin().isBefore(inicio) || r.getFechaInicio().isAfter(fin));
-            if (solapa) return false;
+            // Hay solapamiento si el rango solicitado comparte al menos un día
+            // con una reserva existente. Permite reservas contiguas.
+            boolean solapa = inicio.isBefore(r.getFechaFin()) && fin.isAfter(r.getFechaInicio());
+            if (solapa) {
+                return false;
+            }
         }
         return true;
     }

@@ -121,7 +121,7 @@ public class Hotel {
      *
      * @param r Objeto {@link Reserva} a registrar.
      */
-    public void agregarReservas(Reserva r) {
+    public void agregarReserva(Reserva r) {
         reservas.add(r);
     }
 
